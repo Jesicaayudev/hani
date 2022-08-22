@@ -59,7 +59,8 @@
 			</ul>
 		</nav><!-- .nav-menu -->
 	</div>
-</header><!-- End Header -->
+</header>
+<!-- End Header -->
 
 <!-- ======= Page Property  ======= -->
 <div class="our-skill-area fix hidden-sm">
