@@ -2,6 +2,17 @@
 
 class Layanan_m extends CI_Model
 {
+	public function getProdukById($id)
+	{
+		$this->db->select('*');
+		$this->db->from('tb_layanan');
+		$return = $this->db->where('id_layanan', $id)->get();
+		if ($return->num_rows() > 0) {
+			return $return->result();
+		} else {
+			return false;
+		}
+	}
 	public function getAll3()
 	{
 
@@ -16,7 +27,7 @@ class Layanan_m extends CI_Model
 		return $this->db->get('tb_layanan');
 	}
 	public function produk()
-	{	
+	{
 		return $this->db->get('tb_kategori');
 	}
 	public function kat()
@@ -31,7 +42,8 @@ class Layanan_m extends CI_Model
 		return $query;
 	}
 
-	public function detail_data_en($id){
+	public function detail_data_en($id)
+	{
 		$query = $this->db->order_by('nama_layanan', 'ASC');
 		$query = $this->db->get_where('tb_layanan', array('nama_layanan_en' => $id))->row();
 		return $query;
@@ -56,17 +68,20 @@ class Layanan_m extends CI_Model
 		return $this->db->get('tb_kategori')->row();
 	}
 
-	public function getIdKategoriEn($album){
+	public function getIdKategoriEn($album)
+	{
 		$this->db->where('nama_kategori_en', $album);
 		return $this->db->get('tb_kategori')->row();
 	}
 
-	public function getNamaLayanan($prd) {
+	public function getNamaLayanan($prd)
+	{
 		$this->db->where('kategori', $prd);
 		return $this->db->get('tb_layanan');
 	}
 
-	public function getKategori($id) {
+	public function getKategori($id)
+	{
 		$this->db->where('id_kategori', $id);
 		return $this->db->get('tb_kategori')->row();
 	}
