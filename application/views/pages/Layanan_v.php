@@ -38,8 +38,8 @@
 </head>
 
 <body>
- <!-- ======= Header ======= -->
- <header id="header" class="header d-flex align-items-center">
+  <!-- ======= Header ======= -->
+  <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href='Home' class="logo d-flex align-items-center">
@@ -52,40 +52,41 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-        <li> <a href="<?php echo site_url('Home') ?>"><?php echo get_phrase('Beranda') ?></a></li>
-        <li> <a href="<?php echo site_url('About-us') ?>"><?php echo get_phrase('Tentang Kami') ?></a></li>
-        <li class="active"> <a href="<?php echo site_url('Our-Products') ?>"><?php echo get_phrase('Produk Kami') ?></a></li>
-        <li> <a href="<?php echo site_url('Photo-Gallery') ?>"><?php echo get_phrase('Galeri Foto') ?></a></li>
-        <li> <a href="<?php echo site_url('Contacts') ?>"><?php echo get_phrase('Hubungi Kami') ?></a></li>
-        <li>
+          <li> <a href="<?php echo site_url('Home') ?>"><?php echo get_phrase('Beranda') ?></a></li>
+          <li> <a href="<?php echo site_url('About-us') ?>"><?php echo get_phrase('Tentang Kami') ?></a></li>
+          <li class="active"> <a href="<?php echo site_url('Our-Products') ?>"><?php echo get_phrase('Produk Kami') ?></a></li>
+          <li> <a href="<?php echo site_url('Photo-Gallery') ?>"><?php echo get_phrase('Galeri Foto') ?></a></li>
+          <li> <a href="<?php echo site_url('Contacts') ?>"><?php echo get_phrase('Hubungi Kami') ?></a></li>
+          <li>
           <li class="dropdown"><a href="#"><span><?php echo get_phrase('Pilih Bahasa'); ?>
-            <img src="<?php echo base_url('assets/') ?>flag/id.png">&nbsp;<img src="<?php echo base_url('assets/') ?>flag/en.png">
-            &nbsp;</i></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <img src="<?php echo base_url('assets/') ?>flag/id.png">&nbsp;<img src="<?php echo base_url('assets/') ?>flag/en.png">
+                &nbsp;</i></span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-            <?php
-            $fields = $this->db->list_fields('language');
-            foreach ($fields as $field) {
-              if ($field == 'phrase_id' || $field == 'phrase') continue;
-            ?>
-              <li>
-                <a href="<?php echo base_url(); ?>Multilanguage/select_language/<?php echo $field; ?>" style="color:black;">
-                  <?php echo $field; ?>
-                  <?php //selecting current language
-                  if ($this->session->userdata('current_language') == $field) : ?>
-                    <i class="icon-ok"></i>
-                  <?php endif; ?>
-                </a>
-              </li>
-            <?php
-            }
-            ?>
+              <?php
+              $fields = $this->db->list_fields('language');
+              foreach ($fields as $field) {
+                if ($field == 'phrase_id' || $field == 'phrase') continue;
+              ?>
+                <li>
+                  <a href="<?php echo base_url(); ?>Multilanguage/select_language/<?php echo $field; ?>" style="color:black;">
+                    <?php echo $field; ?>
+                    <?php //selecting current language
+                    if ($this->session->userdata('current_language') == $field) : ?>
+                      <i class="icon-ok"></i>
+                    <?php endif; ?>
+                  </a>
+                </li>
+              <?php
+              }
+              ?>
             </ul>
           </li>
         </ul>
       </nav><!-- .navbar -->
 
     </div>
-  </header><!-- End Header -->
+  </header>
+  <!-- End Header -->
 
   <main id="main">
 
@@ -95,7 +96,7 @@
 
         <h2><span><?php echo get_phrase('Produk Kami') ?></span></h2>
         <ol>
-        <li><a href='Home'>Home</a></li>
+          <li><a href='Home'>Home</a></li>
           <li><span><?php echo get_phrase('Produk Kami') ?></span></li>
         </ol>
 
@@ -105,22 +106,22 @@
     <!-- ======= Services Section ======= -->
     <section id="services" class="services section-bg">
       <div class="container" data-aos="fade-up">
-      <div class="row gy-4">
-      <?php foreach ($product as $p) : ?>
+        <div class="row gy-4">
+          <?php foreach ($product as $p) : ?>
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item  position-relative">
-              <p>
-              <?php if ($this->session->userdata('current_language') == 'English') { ?>
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="service-item  position-relative">
+                <p>
+                  <?php if ($this->session->userdata('current_language') == 'English') { ?>
                 <h3><?php echo $p['nama_kategori_en']; ?></h3>
               <?php } else { ?>
                 <h3><?php echo $p['nama_kategori']; ?></h3>
               <?php } ?></p>
               <?php foreach ($gambar->gambarproduk($p['id_kategori'])->result() as $result) : ?>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-img"><img src="<?php echo base_url('assets/'); ?>img/<?php echo $result->foto_layanan ?>" alt="<?php echo $result->nama_layanan . ' - ' . $p['nama_kategori'] . ' - ' . $namaPerusahaan; ?>" class="img-fluid" alt=""></div>
-            <div class="portfolio-info">
-              <h5>
+                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                  <div class="portfolio-img"><img src="<?php echo base_url('assets/'); ?>img/<?php echo $result->foto_layanan ?>" alt="<?php echo $result->nama_layanan . ' - ' . $p['nama_kategori'] . ' - ' . $namaPerusahaan; ?>" class="img-fluid" alt=""></div>
+                  <div class="portfolio-info">
+                    <h5>
                       <?php if ($this->session->userdata('current_language') == 'English') { ?>
                         <a href="<?php echo site_url('Our-Product/' . str_replace(' ', '-', $result->kategori) . '/' . str_replace(' ', '-', $result->nama_layanan_en)) ?>">
                           <h5><?php echo $result->nama_layanan_en ?></h5>
@@ -129,41 +130,42 @@
                           <a href="<?php echo site_url('Our-Product/' . str_replace(' ', '-', $result->kategori) . '/' . str_replace(' ', '-', $result->nama_layanan)) ?>">
                             <h5><?php echo $result->nama_layanan ?></h5>
                             <!-- <span><?php echo substr($result->deskripsi_layanan, 0, 100) . " ... " ?></span> -->
-                          <?php } ?> </h5>
-              <a href="<?php echo base_url('assets/'); ?>img/<?php echo $result->foto_layanan ?>" alt="<?php echo $result->nama_layanan . ' - ' . $p['nama_kategori'] . ' - ' . $namaPerusahaan; ?>" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" ><i class="bx bx-plus"></i></a>
-            </div>
-            </div>
+                          <?php } ?>
+                    </h5>
+                    <a href="<?php echo base_url('assets/'); ?>img/<?php echo $result->foto_layanan ?>" alt="<?php echo $result->nama_layanan . ' - ' . $p['nama_kategori'] . ' - ' . $namaPerusahaan; ?>" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link"><i class="bx bx-plus"></i></a>
+                  </div>
+                </div>
+              <?php endforeach; ?>
+              <div class="see-more text-center col-12">
+                <?php if ($this->session->userdata('current_language') == 'English') { ?>
+                  <a href="<?php echo site_url('Our-Products/' . str_replace(' ', '-', $p['nama_kategori_en'])) ?>" class="btn btn-dark"><?php echo get_phrase('Lihat Selengkapnya') ?></a>
+                <?php } else { ?>
+                  <a href="<?php echo site_url('Our-Products/' . str_replace(' ', '-', $p['nama_kategori'])) ?>" class="btn btn-dark"><?php echo get_phrase('Lihat Selengkapnya') ?></a>
+                <?php } ?>
+              </div>
+              </div>
+            </div><!-- End Service Item -->
+
           <?php endforeach; ?>
-          <div class="see-more text-center col-12">
-            <?php if ($this->session->userdata('current_language') == 'English') { ?>
-              <a href="<?php echo site_url('Our-Products/' . str_replace(' ', '-', $p['nama_kategori_en'])) ?>" class="btn btn-dark"><?php echo get_phrase('Lihat Selengkapnya') ?></a>
-            <?php } else { ?>
-              <a href="<?php echo site_url('Our-Products/' . str_replace(' ', '-', $p['nama_kategori'])) ?>" class="btn btn-dark"><?php echo get_phrase('Lihat Selengkapnya') ?></a>
-            <?php } ?>
-          </div>
-            </div>
-          </div><!-- End Service Item -->
-        
-        <?php endforeach; ?>
         </div>
       </div>
     </section><!-- End Services Section -->
 
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <div id="preloader"></div>
+    <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 
 </body>
 
